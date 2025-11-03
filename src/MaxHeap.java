@@ -59,7 +59,7 @@ public class MaxHeap<T extends Comparable<? super T>> implements MaxHeapInterfac
 
     private int reHeap(int index) {
         if (index == 1 || heap[index].compareTo(getParent(index)) <= 0) {
-            return 0;
+            return index;
         }
 
         T temp = heap[index];
@@ -70,15 +70,55 @@ public class MaxHeap<T extends Comparable<? super T>> implements MaxHeapInterfac
     }
 
     private int reverseReHeap(int index) {
+        if (getLeftChild(index) == null && getRightChild(index) == null) {
+            return index;
+        }
 
+        int comparisonIndex;
+
+        if (getRightChild(index) == null) {
+            comparisonIndex = index * 2;
+        } else {
+            if (getLeftChild(index).compareTo(getRightChild(index)) <= 0) {
+                comparisonIndex = index * 2 + 1;
+            } else {
+                comparisonIndex = index * 2;
+            }
+        }
+
+        if (heap[index].compareTo(heap[comparisonIndex]) >= 0) {
+            return index;
+        } else {
+            T temp = heap[index];
+            heap[index] = heap[comparisonIndex];
+            heap[comparisonIndex] = temp;
+            return reverseReHeap(comparisonIndex);
+        }
     }
 
+//    public void displayHeap() {
+//        System.out.print("{ ");
+//        for (int i = 0; i <= lastIndex; i++) {
+//            System.out.printf(heap[i] + ", ");
+//        }
+//        System.out.println("\b\b }");
+//    }
+
     public void displayHeap() {
-        System.out.print("{ ");
-        for (int i = 0; i <= lastIndex; i++) {
-            System.out.printf(heap[i] + ", ");
+        System.out.println(toString());
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder output = new StringBuilder();
+        output.append("{ ");
+        for (int i = 1; i <= lastIndex; i++) {
+            output.append(heap[i] + ", ");
         }
-        System.out.println("}");
+
+        output.delete(output.length() - 2, output.length());
+        output.append(" }");
+        return output.toString();
     }
 
     @Override
@@ -121,6 +161,8 @@ public class MaxHeap<T extends Comparable<? super T>> implements MaxHeapInterfac
 
     @Override
     public void clear() {
-
+        while (!isEmpty()) {
+            removeMax();
+        }
     }
 }
