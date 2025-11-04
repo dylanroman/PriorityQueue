@@ -1,3 +1,13 @@
+//
+// Name: Roman, Dylan
+// Project #4
+// 11/4/2025
+// Course: cs-2400-03-f25
+//
+// Description:
+// Uses a Max Heap to implement a Priority Queue. Priority queue is tested in an ER room simulator.
+//
+
 public class MaxHeapPriorityQueue<T extends Comparable<? super T>> implements PriorityQueueInterface<T> {
 
     private MaxHeapInterface<T> priorityQueue;
@@ -24,7 +34,7 @@ public class MaxHeapPriorityQueue<T extends Comparable<? super T>> implements Pr
     }
 
     public void displayPriorityQueue() {
-        System.out.println(priorityQueue.toString());
+        ((MaxHeap<T>) priorityQueue).displayHeap();
     }
 
     @Override

@@ -1,3 +1,13 @@
+//
+// Name: Roman, Dylan
+// Project #4
+// 11/4/2025
+// Course: cs-2400-03-f25
+//
+// Description:
+// Uses a Max Heap to implement a Priority Queue. Priority queue is tested in an ER room simulator.
+//
+
 public class MaxHeap<T extends Comparable<? super T>> implements MaxHeapInterface<T>{
 
     private T[] heap;
@@ -53,6 +63,9 @@ public class MaxHeap<T extends Comparable<? super T>> implements MaxHeapInterfac
         @SuppressWarnings("unchecked")
         T[] temp = (T[]) new Object[capacity * 2];
 
+        for (int i = 0; i <= lastIndex; i++) {
+            temp[i] = heap[i];
+        }
         heap = temp;
         capacity = capacity * 2;
     }
@@ -96,29 +109,17 @@ public class MaxHeap<T extends Comparable<? super T>> implements MaxHeapInterfac
         }
     }
 
-//    public void displayHeap() {
-//        System.out.print("{ ");
-//        for (int i = 0; i <= lastIndex; i++) {
-//            System.out.printf(heap[i] + ", ");
-//        }
-//        System.out.println("\b\b }");
-//    }
-
     public void displayHeap() {
-        System.out.println(toString());
-    }
+        if (!isEmpty()) {
+            System.out.print("[ ");
+            for (int i = 1; i < lastIndex; i++) {
+                System.out.print(heap[i] + ", ");
+            }
 
-    @Override
-    public String toString() {
-        StringBuilder output = new StringBuilder();
-        output.append("{ ");
-        for (int i = 1; i <= lastIndex; i++) {
-            output.append(heap[i] + ", ");
+            System.out.println(heap[lastIndex] + " ]");
+        } else {
+            System.out.println("[ ]");
         }
-
-        output.delete(output.length() - 2, output.length());
-        output.append(" }");
-        return output.toString();
     }
 
     @Override

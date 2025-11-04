@@ -1,3 +1,13 @@
+//
+// Name: Roman, Dylan
+// Project #4
+// 11/4/2025
+// Course: cs-2400-03-f25
+//
+// Description:
+// Uses a Max Heap to implement a Priority Queue. Priority queue is tested in an ER room simulator.
+//
+
 public class Patient implements Comparable<Patient>{
     private String name;
     private int priority;
@@ -29,6 +39,6 @@ public class Patient implements Comparable<Patient>{
 
     @Override
     public String toString() {
-        String output = String.format("Patient ()");
+        return String.format("Patient (%s, %d)",  name, priority);
     }
 }

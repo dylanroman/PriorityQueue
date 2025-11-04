@@ -1,3 +1,13 @@
+//
+// Name: Roman, Dylan
+// Project #4
+// 11/4/2025
+// Course: cs-2400-03-f25
+//
+// Description:
+// Uses a Max Heap to implement a Priority Queue. Priority queue is tested in an ER room simulator.
+//
+
 /** Max Heap is a complete binary tree where parent nodes are greater than or equal to the values of its children. */
 public interface MaxHeapInterface<T extends Comparable<? super T>> {
     /** Adds an entry into the heap. Ensures parent nodes are greater than or equal to children nodes.
