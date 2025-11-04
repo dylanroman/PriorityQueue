@@ -8,37 +8,20 @@
 // Uses a Max Heap to implement a Priority Queue. Priority queue is tested in an ER room simulator.
 //
 
-public class Patient implements Comparable<Patient>{
-    private String name;
-    private int priority;
-
-    public Patient(String name, int priority) {
-        this.name = name;
-        this.priority = priority;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getPriority() {
-        return priority;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-    public void setPriority(int priority) {
-        this.priority = priority;
-    }
-
+public record Patient(String name, int priority) implements Comparable<Patient>{
     @Override
     public int compareTo(Patient o) {
-        return this.priority - o.priority;
+        if (priority < o.priority) {
+            return -1;
+        } else if (priority == o.priority) {
+            return 0;
+        } else {
+            return 1;
+        }
     }
 
     @Override
     public String toString() {
-        return String.format("Patient (%s, %d)",  name, priority);
+        return String.format("Patient(%s, %d)", name, priority);
     }
 }

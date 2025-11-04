@@ -21,6 +21,8 @@ public class ERApp {
             hospital.add(patient);
         }
 
+        System.out.println("");
+
         System.out.printf("All Waiting Patients (%d):\n", hospital.getSize());
         ((MaxHeapPriorityQueue<Patient>) hospital).displayPriorityQueue();
 
@@ -31,8 +33,10 @@ public class ERApp {
             ((MaxHeapPriorityQueue<Patient>) hospital).displayPriorityQueue();
 
             if (hospital.getSize() > 0) {
-                System.out.printf("Next Patient: %s\n", hospital.peek().getName());
+                System.out.printf("Next Patient: %s\n", hospital.peek().name());
             }
+
+            System.out.println("");
 
         }
 
