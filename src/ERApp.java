@@ -10,7 +10,7 @@
 
 public class ERApp {
     public static void main(String[] args) {
-        System.out.println("Emergency Room Simulation by R. Dylan\n");
+        System.out.println("Emergency Room Simulation by D. Roman\n");
 
         Patient[] patients = {new Patient("Angela", 3), new Patient("Yeema", 5), new Patient("Gojo", 1), new Patient("Bryce", 6), new Patient("Brimstone", 5), new Patient("Caleb", 4), new Patient("Deelan", 4)};
 
@@ -21,7 +21,7 @@ public class ERApp {
             hospital.add(patient);
         }
 
-        System.out.println("");
+        System.out.println();
 
         System.out.printf("All Waiting Patients (%d):\n", hospital.getSize());
         ((MaxHeapPriorityQueue<Patient>) hospital).displayPriorityQueue();
@@ -36,7 +36,7 @@ public class ERApp {
                 System.out.printf("Next Patient: %s\n", hospital.peek().name());
             }
 
-            System.out.println("");
+            System.out.println();
 
         }
 

@@ -63,14 +63,12 @@ public class MaxHeap<T extends Comparable<? super T>> implements MaxHeapInterfac
         @SuppressWarnings("unchecked")
         T[] temp = (T[]) new Object[capacity * 2];
 
-        for (int i = 0; i <= lastIndex; i++) {
-            temp[i] = heap[i];
-        }
+        for (int i = 0; i <= lastIndex; i++) temp[i] = heap[i];
         heap = temp;
         capacity = capacity * 2;
     }
 
-    private int reHeap(int index) {
+    private int reHeapLeaf(int index) {
         if (index == 1 || heap[index].compareTo(getParent(index)) <= 0) {
             return index;
         }
@@ -79,10 +77,10 @@ public class MaxHeap<T extends Comparable<? super T>> implements MaxHeapInterfac
         heap[index] = getParent(index);
         heap[index / 2] = temp;
 
-        return reHeap(index / 2);
+        return reHeapLeaf(index / 2);
     }
 
-    private int reverseReHeap(int index) {
+    private int reHeapHead(int index) {
         if (getLeftChild(index) == null && getRightChild(index) == null) {
             return index;
         }
@@ -105,7 +103,7 @@ public class MaxHeap<T extends Comparable<? super T>> implements MaxHeapInterfac
             T temp = heap[index];
             heap[index] = heap[comparisonIndex];
             heap[comparisonIndex] = temp;
-            return reverseReHeap(comparisonIndex);
+            return reHeapHead(comparisonIndex);
         }
     }
 
@@ -132,7 +130,7 @@ public class MaxHeap<T extends Comparable<? super T>> implements MaxHeapInterfac
         }
 
         heap[lastIndex] = newEntry;
-        reHeap(lastIndex);
+        reHeapLeaf(lastIndex);
     }
 
     @Override
@@ -140,7 +138,7 @@ public class MaxHeap<T extends Comparable<? super T>> implements MaxHeapInterfac
         T temp = heap[1];
         heap[1] = heap[lastIndex];
         heap[lastIndex--] = null;
-        reverseReHeap(1);
+        reHeapHead(1);
 
         return temp;
     }
